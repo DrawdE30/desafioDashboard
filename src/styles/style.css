@@ -190,7 +190,7 @@ label[for="nav-toggle"] {
 /* Estilo predeterminado cuando el Sidebar está expandido */
 .body-content {
   /* border: solid 1px yellow; */
-  margin-left: calc(var(--navbar-width) + 30px);
+  margin-left: calc(var(--navbar-width) + 50px);
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
@@ -199,9 +199,7 @@ label[for="nav-toggle"] {
 }
 
 .body-content.toggled {
-  margin-left: calc(
-    var(--navbar-width-min) + 30px
-  ); /* Asumiendo un ancho menor cuando está toggled */
+  margin-left: calc(var(--navbar-width-min) + 50px);
 }
 
 /* Lanes */
@@ -218,7 +216,9 @@ label[for="nav-toggle"] {
   /* border: solid 1px green; */
   padding: 5px;
   /* height: 72vh; */
-  height: calc(81vh - 1vw);
+  height: calc(90vh - 1vw);
+  margin-right: 10px;
+  border-right: solid 2px var(--navbar-dark-primary);
 }
 
 .content-lanes .body-lanes {
@@ -515,4 +515,27 @@ label[for="nav-toggle"] {
 
 .user-content {
   flex-wrap: wrap;
+}
+
+/* view list */
+.list-task {
+  margin-top: 10px;
+}
+.list-task tr {
+  color: var(--navbar-light-primary);
+}
+
+.list-task thead tr {
+  background-color: var(--navbar-dark-primary);
+}
+
+.list-task tbody td {
+  padding-left: 10px;
+  padding-right: 10px;
+  border-right: solid 1px var(--navbar-light-secondary);
+  border-bottom: solid 1px var(--navbar-light-secondary);
+}
+
+.list-task tbody td:last-child {
+  border-right: none;
 }

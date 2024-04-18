@@ -1,4 +1,5 @@
 import { format, isToday, isYesterday, isPast, isFuture } from 'date-fns';
+import { toZonedTime } from 'date-fns-tz';
 
 function searchData(data, searchValue, searchProperties) {
     return !searchValue ? data : data?.filter((dato) => {
@@ -13,8 +14,6 @@ function searchData(data, searchValue, searchProperties) {
 };
 
 function evaluateDate(date) {
-    const now = new Date();
-
     if (isToday(date)) {
         return 'TODAY';
     } else if (isYesterday(date)) {
@@ -26,6 +25,27 @@ function evaluateDate(date) {
     }
 }
 
+function valueFromColumnPath(obj, path) {
+    const pathArray = path.split('.');
+    let value = obj;
+    for (const key of pathArray) {
+        if (value === null || value === undefined) {
+            return ''; // O algún valor por defecto
+        }
+        value = value[key];
+    }
+    return value;
+}
+
+function customDateFormat({ date, type = "large" }) {
+    const pattern = type.toLowerCase() === "large" ? 'yyyy-MM-dd HH:mm:ss' : 'yyyy-MM-dd';
+    const timeZone = 'UTC';
+
+    const zonedDate = toZonedTime(new Date(date), timeZone);
+    const outputDueDate = format(zonedDate, pattern, { timeZone });
+    return outputDueDate;
+}
+
 const POINTS_MAP = {
     "ZERO": 0,
     "ONE": 1,
@@ -34,4 +54,4 @@ const POINTS_MAP = {
     "EIGHT": 8
 };
 
-export { evaluateDate, searchData, POINTS_MAP };
+export { evaluateDate, searchData, valueFromColumnPath, customDateFormat, POINTS_MAP, };
