@@ -3,7 +3,7 @@ import { useQuery, } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { Add as AddIcon, GridView as GridViewIcon, Reorder as ReorderIcon, } from '@mui/icons-material';
 import { GET_USERS, GET_TASK_TAGS, GET_TASK_POINTS, GET_TASK_STATUS, GET_TASKS } from '../graphql/queries/queries';
-import { DELETE_TASK_MUTATION, UPDATE_TASK_MUTATION, } from '../graphql/queries/mutations';
+import { DELETE_TASK_MUTATION, } from '../graphql/queries/mutations';
 import { TASK_TAGS, TASK_POINTS, TASK_STATUS } from '../graphql/constants/constants';
 import { searchData } from '../utils/functions';
 import SearchActionBar from '../components/Frame/SearchActionBar';
@@ -21,14 +21,14 @@ const Dashboard = () => {
   const handleClose = () => setOpen(false);
 
   const { data: users, loading: usersLoading, error: usersError } = useQuery(GET_USERS);
-  // const { data: tagsData, loading: tagsLoading, error: tagsError } = useQuery(GET_TASK_TAGS);
-  // const { data: pointsData, loading: pointsLoading, error: pointsError } = useQuery(GET_TASK_POINTS);
+  const { data: tags, loading: tagsLoading, error: tagsError } = useQuery(GET_TASK_TAGS);
+  const { data: points, loading: pointsLoading, error: pointsError } = useQuery(GET_TASK_POINTS);
   const { data: status, loading: statusLoading, error: statusError } = useQuery(GET_TASK_STATUS);
   const { data: tasks, loading: taskLoading, error: taskError } = useQuery(GET_TASKS, { variables: { input: {} } });
 
   const [isLoading, setIsLoading] = useState(false);
-  const tagsData = TASK_TAGS;
-  const pointsData = TASK_POINTS;
+  const tagsData = tags?.__type?.enumValues || TASK_TAGS;
+  const pointsData = points?.__type?.enumValues || TASK_POINTS;
   const statusData = status?.__type?.enumValues || TASK_STATUS;
   const usersData = users?.users || [];
   const [tasksData, setTasksData] = useState([]);
@@ -40,12 +40,12 @@ const Dashboard = () => {
   }, [tasks]);
 
   useEffect(() => {
-    if (usersLoading || taskLoading || statusLoading) {
+    if (usersLoading || tagsLoading || pointsLoading || taskLoading || statusLoading) {
       setIsLoading(true);
     } else {
       setIsLoading(false);
     }
-  }, [usersLoading, taskLoading, statusLoading]);
+  }, [usersLoading, tagsLoading, pointsLoading, taskLoading, statusLoading]);
 
   // const [tasks, setTasks] = useState(tasksFixed);
   // const [lanes, setLanes] = useState(lanesFixed);

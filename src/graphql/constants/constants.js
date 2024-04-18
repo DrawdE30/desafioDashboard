@@ -11,9 +11,9 @@ export const TASK_TAGS = [
     {
         "name": "RAILS"
     },
-    {
-        "name": "REACT"
-    }
+    // {
+    //     "name": "REACT"
+    // }
 ];
 
 export const TASK_POINTS = [
@@ -29,9 +29,9 @@ export const TASK_POINTS = [
     {
         "name": "TWO"
     },
-    {
-        "name": "ZERO"
-    }
+    // {
+    //     "name": "ZERO"
+    // }
 ];
 
 export const TASK_STATUS = [
@@ -47,7 +47,7 @@ export const TASK_STATUS = [
     {
         "name": "DONE"
     },
-    {
-        "name": "CANCELLED"
-    }
+    // {
+    //     "name": "CANCELLED"
+    // }
 ];
