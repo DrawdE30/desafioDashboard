@@ -5,6 +5,7 @@ import ReorderIcon from '@mui/icons-material/Reorder';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 const Sidebar = ({ isToggled, handleToggle, }) => {
+  const pathInit = null; //"/desafioDashboard.github.io";
   return (
     <div id="nav-bar">
       <input id="nav-toggle" type="checkbox"
@@ -28,11 +29,11 @@ const Sidebar = ({ isToggled, handleToggle, }) => {
         <hr />
       </div>
       <div id="nav-content">
-        <NavLink to="/">
+        <NavLink to={`${(pathInit || '/')}`}>
           <div className="nav-button"><GridViewIcon className='fas' /><span>DASHBOARD</span></div>
         </NavLink>
         <div className="nav-button"><ReorderIcon className='fas' /><span>MY TASK</span></div>
-        <NavLink to="/settings">
+        <NavLink to={`${(pathInit || '')}/settings`}>
           <div className="nav-button"><ManageAccountsIcon className='fas' /><span>SETTINGS</span></div>
         </NavLink>
       </div>

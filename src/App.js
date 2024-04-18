@@ -21,12 +21,12 @@ function App() {
 }
 
 function BodyWeb({ }) {
-  const pathInit = null;
+  const pathInit = null; // "/desafioDashboard.github.io";
   return (
     <div style={{ height: "100%", }}>
       <Routes>
         <Route path={`${(pathInit || '/')}`} element={<Dashboard />}></Route>
-        <Route path={`${(pathInit || '/settings')}`} element={<Settings />}></Route>
+        <Route path={`${(pathInit || '')}/settings`} element={<Settings />}></Route>
         <Route path="*" element={<NotFound pathInit={pathInit} />} />
       </Routes>
     </div>
