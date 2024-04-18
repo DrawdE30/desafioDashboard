@@ -1,13 +1,38 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* scroll bar */
+::-webkit-scrollbar {
+  width: 6px; /* Ancho de la barra vertical */
+  height: 5px; /* Alto de la barra horizontal */
+  border-radius: 5px; /* Radio del borde */
+}
+
+/* Estilos de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+  background: #2d2f33;
+  border: solid 1px rgba(211, 166, 80, 0.3);;
+  border-radius: 5px;
+  margin-left: 50px;
+}
+
+/* Color del carril de la barra de desplazamiento */
+/* *::-webkit-scrollbar-track {
+  background-color: rgba(241, 196, 15, 0.2);
+  border: solid 1px;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+} */
+/*Fin Estilos para el scroll*/
