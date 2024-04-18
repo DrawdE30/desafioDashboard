@@ -3,7 +3,7 @@ import { useQuery, } from '@apollo/client';
 import { useMutation } from '@apollo/client';
 import { Add as AddIcon, GridView as GridViewIcon, Reorder as ReorderIcon, } from '@mui/icons-material';
 import { GET_USERS, GET_TASK_TAGS, GET_TASK_POINTS, GET_TASK_STATUS, GET_TASKS } from '../graphql/queries/queries';
-import { DELETE_TASK_MUTATION } from '../graphql/queries/mutations';
+import { DELETE_TASK_MUTATION, UPDATE_TASK_MUTATION, } from '../graphql/queries/mutations';
 import { TASK_TAGS, TASK_POINTS, TASK_STATUS } from '../graphql/constants/constants';
 import { searchData } from '../utils/functions';
 import SearchActionBar from '../components/Frame/SearchActionBar';
@@ -84,9 +84,12 @@ const Dashboard = () => {
   }
 
   const [search, setSearch] = useState("");
-  const resultSearch = searchData(tasksData, search, searchFields);
+  const [resultSearch, setResultSearch] = useState(null);
+  useEffect(() => {
+    setResultSearch(searchData(tasksData, search, searchFields));
+  }, [search, tasksData])
 
-  const [viewType, setViewType] = useState(1);
+  const [viewType, setViewType] = useState(2);
 
   return (
     <div>
@@ -130,7 +133,8 @@ const Dashboard = () => {
         {viewType === 2 &&
           <CardView
             statusData={statusData}
-            resultSearch={resultSearch}
+            data={resultSearch}
+            setData={setResultSearch}
             handleTaskDelete={handleTaskDelete}
             handleTaskEdit={handleTaskEdit}
           />

@@ -6,13 +6,22 @@ import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutline
 import { evaluateDate, POINTS_MAP } from '../../utils/functions';
 import ActionsButton from './TaskCard/ActionsButton';
 
-const TaskCard = ({ task, handleTaskDelete, handleTaskEdit }) => {
+const TaskCard = ({ task, handleTaskDelete, handleTaskEdit, handleDragStart, }) => {
     const assignee = task.assignee;
     const tags = task.tags;
     const statusTask = evaluateDate(task.dueDate);
 
+    // Agrega la función de arrastre al componente
+    const onDragStart = (event) => {
+        handleDragStart(event, task.id);
+    };
+
     return (
-        <div className="task-card">
+        <div
+            className="task-card"
+            draggable
+            onDragStart={onDragStart}
+        >
             <div className="task-header">
                 <h3 className="task-title">{task.name}</h3>
                 <ActionsButton
